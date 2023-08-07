@@ -6,8 +6,8 @@ namespace Catalog.Domain.Entities;
 public sealed class ProductType : Enumeration
 {
     public static ProductType Course = new(1, nameof(Course).ToLowerInvariant());
-    public static ProductType Forum = new(1, nameof(Forum).ToLowerInvariant());
-    public static ProductType Webinar = new(1, nameof(Webinar).ToLowerInvariant());
+    public static ProductType Forum = new(2, nameof(Forum).ToLowerInvariant());
+    public static ProductType Webinar = new(3, nameof(Webinar).ToLowerInvariant());
     
     public ProductType(int id, string name) : base(id, name)
     {
