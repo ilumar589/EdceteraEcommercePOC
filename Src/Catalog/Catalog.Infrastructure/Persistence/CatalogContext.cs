@@ -1,5 +1,6 @@
 ﻿using Catalog.Domain.Common;
 using Catalog.Domain.Entities;
+using Catalog.Infrastructure.Persistence.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Infrastructure.Persistence;
@@ -10,6 +11,13 @@ public sealed class CatalogContext : DbContext
     
     public CatalogContext(DbContextOptions<CatalogContext> options) : base(options)
     {}
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new ProductTypeEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductEntityConfiguration());
+        base.OnModelCreating(modelBuilder);
+    }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {

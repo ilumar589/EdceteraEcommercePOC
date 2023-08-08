@@ -7,4 +7,11 @@ public sealed class Product : EntityBase
     public string Name { get; set; }
     public string Description { get; set; }
     public ProductType Type { get; set; }
+
+    public int GetProductTypeId()
+    {
+        return _productTypeId;
+    }
+    
+    private int _productTypeId;
 }

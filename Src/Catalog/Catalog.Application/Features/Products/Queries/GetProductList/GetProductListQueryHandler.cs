@@ -1,4 +1,5 @@
 ﻿using Catalog.Application.Contracts.Persistence;
+using Catalog.Domain.Entities;
 using MediatR;
 
 namespace Catalog.Application.Features.Products.Queries.GetProductList;
@@ -22,7 +23,7 @@ public sealed class GetProductListQueryHandler : IRequestHandler<GetProductListQ
                 Id = pbn.Id,
                 Name = pbn.Name,
                 Description = pbn.Description,
-                ProductType = pbn.Type.Name
+                ProductType = ProductType.From(pbn.GetProductTypeId()).Name
             }).ToList();
     }
 }
