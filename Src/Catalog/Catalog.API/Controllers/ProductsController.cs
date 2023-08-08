@@ -2,6 +2,7 @@
 using Catalog.Application.Features.Products.Commands.AddNewProducts;
 using Catalog.Application.Features.Products.Queries.GetProductList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
@@ -17,6 +18,7 @@ public sealed class ProductsController : ControllerBase
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "ReadProducts")]
     [HttpGet("{productName}", Name = "GetProductList")]
     [ProducesResponseType(typeof(IReadOnlyList<BasicProductView>), (int) HttpStatusCode.OK)]
     public async Task<ActionResult<IReadOnlyList<BasicProductView>>> GetProductList(string productName)
